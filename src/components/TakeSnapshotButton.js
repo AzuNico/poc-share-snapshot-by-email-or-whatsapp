@@ -3,24 +3,17 @@ import {Button} from 'native-base';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const ShareButton = ({
-  label = 'Compartir',
+const TakeSnapshotButton = ({
+  label = 'Sacar Captura',
   icon = ['fab', 'whatsapp'],
   onPress,
-  disabled = true,
 }) => {
   return (
     <View>
       <Button
-        isDisabled={disabled}
+        colorScheme="secondary"
         onPress={onPress}
-        endIcon={
-          <FontAwesomeIcon
-            color={disabled ? 'gray' : 'white'}
-            size={25}
-            icon={icon}
-          />
-        }
+        endIcon={<FontAwesomeIcon color={'white'} size={25} icon={'camera'} />}
         size={'lg'}>
         {label}
       </Button>
@@ -28,4 +21,4 @@ const ShareButton = ({
   );
 };
 
-export default ShareButton;
+export default TakeSnapshotButton;
