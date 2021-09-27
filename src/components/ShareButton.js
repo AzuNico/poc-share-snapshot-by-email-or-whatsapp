@@ -7,12 +7,20 @@ const ShareButton = ({
   label = 'Compartir',
   icon = ['fab', 'whatsapp'],
   onPress,
+  disabled = true,
 }) => {
   return (
     <View>
       <Button
+        isDisabled={disabled}
         onPress={onPress}
-        endIcon={<FontAwesomeIcon color={'white'} size={25} icon={icon} />}
+        endIcon={
+          <FontAwesomeIcon
+            color={disabled ? 'gray' : 'white'}
+            size={25}
+            icon={icon}
+          />
+        }
         size={'lg'}>
         {label}
       </Button>

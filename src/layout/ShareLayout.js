@@ -1,39 +1,57 @@
-import {Box, Center, Heading, ScrollView, Stack, VStack} from 'native-base';
+import {
+  Box,
+  Center,
+  Heading,
+  ScrollView,
+  Stack,
+  VStack,
+  Text,
+  View,
+} from 'native-base';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+
 import ShareButton from '../components/ShareButton';
 import Share from 'react-native-share';
 import TakeSnapshotButton from '../components/TakeSnapshotButton';
+import moment from 'moment';
 
 export default function ShareLayout({
   onPressShareByWhatsApp,
   onPressShareByEmail,
+  onTakeSnapshot,
+  disabledShare,
+  time,
 }) {
   return (
-    <Center
-      flex={1}
-      justifyContent={'space-between'}
-      // style={{borderColor: 'red', borderWidth: 1}}
-    >
-      <Heading marginBottom="24" size="lg">
-        Share App
-      </Heading>
-      <Stack space={5}>
-        <Box marginBottom="24">
-          <TakeSnapshotButton onPress={onPressShareByWhatsApp} />
-        </Box>
+    <View flex={1} style={{backgroundColor:"white"}} >
+      <Center flex={1} justifyContent={'space-between'}>
+        <Heading marginBottom="24" size="lg">
+          Share App
+        </Heading>
 
-        <ShareButton
-          label="Compartir por WhatsApp"
-          onPress={onPressShareByWhatsApp}
-        />
+        <Text marginBottom="24" bold fontSize="2xl">
+          {time}
+        </Text>
 
-        <ShareButton
-          label="Compartir por Mail"
-          icon={'envelope'}
-          onPress={onPressShareByEmail}
-        />
-      </Stack>
-    </Center>
+        <Stack space={5}>
+          <Box marginBottom="24">
+            <TakeSnapshotButton onPress={onTakeSnapshot} />
+          </Box>
+
+          <ShareButton
+            label="Compartir por WhatsApp"
+            onPress={onPressShareByWhatsApp}
+            disabled={disabledShare}
+          />
+
+          <ShareButton
+            label="Compartir por Mail"
+            icon={'envelope'}
+            onPress={onPressShareByEmail}
+            disabled={disabledShare}
+          />
+        </Stack>
+      </Center>
+    </View>
   );
 }
